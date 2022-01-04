@@ -11,4 +11,5 @@ public class StudyImplements implements studyInterface {
     public void exit() {
         System.out.println("출구입니다.");
     }
+
 }

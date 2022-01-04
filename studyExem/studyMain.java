@@ -1,6 +1,7 @@
 package studyExem;
 
 public class studyMain {
+
     public static void main(String[] args) {
         StudyImplements studyImplements = new StudyImplements();
 
@@ -9,4 +10,5 @@ public class studyMain {
         System.out.println(studyImplements.MaxNum);
         System.out.println(studyImplements.minNum);
     }
+
 }
