@@ -1,4 +1,4 @@
-package level2;
+package studyExem;
 
 public class StudyImplements implements studyInterface {
 

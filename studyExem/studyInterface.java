@@ -1,4 +1,4 @@
-package level2;
+package studyExem;
 
 public interface studyInterface {
 
