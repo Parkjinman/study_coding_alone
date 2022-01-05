@@ -1,23 +1,12 @@
 package level2;
 
+import object.level2Object.Truck;
+
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class StackAndQueue {
-
-    static class Truck {
-        int weight;
-        int move;
-
-        public Truck(int weight) {
-            this.weight = weight;
-            this.move = 1;
-        }
-
-        public void moving() {
-            move++;
-        }
-    }
 
     //다리를 지나는 트럭
     static int bridge_length = 2;
@@ -64,8 +53,32 @@ public class StackAndQueue {
         return answer;
     }
 
+    //주식가격
+    static int[] prices = {1, 2, 3, 2, 3};
+    public static int[] solution(int[] prices) {
+        Stack<Integer> beginIdxs = new Stack<>();
+        int i=0;
+        int[] terms = new int[prices.length];
+
+        beginIdxs.push(i);
+        for (i=1; i<prices.length; i++) {
+            while (!beginIdxs.empty() && prices[i] < prices[beginIdxs.peek()]) {
+                int beginIdx = beginIdxs.pop();
+                terms[beginIdx] = i - beginIdx;
+            }
+            beginIdxs.push(i);
+        }
+        while (!beginIdxs.empty()) {
+            int beginIdx = beginIdxs.pop();
+            terms[beginIdx] = i - beginIdx - 1;
+        }
+
+        return terms;
+    }
+
     public static void main(String[] args) {
-        System.out.println(solution(bridge_length, weight, truck_weights));
+//        System.out.println(solution(bridge_length, weight, truck_weights));
+        System.out.println(solution(prices));
     }
 
 }
