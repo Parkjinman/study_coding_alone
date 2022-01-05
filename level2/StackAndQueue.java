@@ -2,9 +2,7 @@ package level2;
 
 import object.level2Object.Truck;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class StackAndQueue {
 
@@ -76,9 +74,50 @@ public class StackAndQueue {
         return terms;
     }
 
+    //더 맵게(heap)
+//    static int[] scoville = {1, 2, 3, 9, 10, 12};
+//    static int K = 7;
+    static int[] scoville = {1,1};
+    static int K = 4;
+    public static int solution(int[] scoville, int K) {
+        int answer = 0;
+
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(); //최대 힙
+
+        for(int s : scoville) {
+            priorityQueue.offer(s);
+        }
+
+        while ( !priorityQueue.isEmpty() ) {
+            if(priorityQueue.size() == 1) {
+                if(priorityQueue.peek() >= K) {
+                    break;
+                } else {
+                    return -1;
+                }
+            }
+            if(priorityQueue.peek() >= K) break;
+
+            int standardNum = priorityQueue.poll();
+            int compareNum = priorityQueue.peek();
+
+            priorityQueue.offer(standardNum + compareNum * 2);
+            answer++;
+
+            priorityQueue.poll();
+        }
+
+        if(answer == 0) {
+            answer = -1;
+        }
+
+        return answer;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(solution(bridge_length, weight, truck_weights));
-        System.out.println(solution(prices));
+//        System.out.println(solution(prices));
+        System.out.println(solution(scoville, K));
     }
 
 }
