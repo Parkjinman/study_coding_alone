@@ -114,10 +114,36 @@ public class StackAndQueue {
         return answer;
     }
 
+    //올바른 괄호
+//    static String s = "()()";
+//    static String s = "(())()";
+//    static String s = ")()(";
+    static String s = "(()(";
+    public static boolean solution(String s) {
+        Stack<Integer> stack = new Stack<>();
+
+        for(int i=0; i<s.length(); i++) {
+            if(s.charAt(i) == '(') {
+                stack.add(0);
+            } else {
+                if(stack.isEmpty()) {
+                    return false;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+
+        if(!stack.isEmpty()) return false;
+
+        return true;
+    }
+
     public static void main(String[] args) {
 //        System.out.println(solution(bridge_length, weight, truck_weights));
-//        System.out.println(solution(prices));
-        System.out.println(solution(scoville, K));
+        System.out.println(solution(prices));
+//        System.out.println(solution(scoville, K));
+//        System.out.println(solution(s));
     }
 
 }
