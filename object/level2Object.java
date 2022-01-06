@@ -17,18 +17,16 @@ public class level2Object {
         }
     }
 
-    /*public static class Price {
-        public int standardNum;
-        public int compareNum;
-        public int increaseValue = 0;
+    /*public static class LeastCommonMultiple implements Comparable<LeastCommonMultiple> {
+        public int numCnt;
 
-        public Price(int standardNum, int compareNum) {
-            this.standardNum = standardNum;
-            this.compareNum = compareNum;
+        public LeastCommonMultiple(int numCnt) {
+            this.numCnt = numCnt;
         }
 
-        public void increaseIng() {
-            if(compareNum >= standardNum) increaseValue++;
+        @Override
+        public int compareTo(LeastCommonMultiple o) {
+            return numCnt - o.numCnt;
         }
     }*/
 
