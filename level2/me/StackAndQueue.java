@@ -1,4 +1,4 @@
-package level2;
+package level2.me;
 
 import object.level2Object.Truck;
 
