@@ -2,8 +2,184 @@ package level1.me;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class NumberProblem {
+
+    //없는 숫자 더하기
+    public int solution_5(int[] numbers) {
+        int answer = 0;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for(int i : numbers) {
+            map.put(i, 1);
+        }
+
+        for(int i=0; i<=9; i++) {
+            if(map.get(i) == null) answer += i;
+        }
+
+        return answer;
+    }
+
+    //음양 더하기
+    public int solution(int[] absolutes, boolean[] signs) {
+        int answer = 0;
+
+        for(int i=0; i<absolutes.length; i++) {
+            if(signs[i]) answer += absolutes[i];
+            else answer += absolutes[i]*-1;
+        }
+
+        return answer;
+    }
+
+    //내적
+    public int solution(int[] a, int[] b) {
+        int answer = 0;
+
+        for(int i=0; i<a.length; i++) {
+            answer += a[i]*b[i];
+        }
+
+        return answer;
+    }
+
+    //소수만들기
+    public boolean primeNumberSe(int number) {
+        if(number == 0 || number == 1) {
+            return false;
+        }
+
+        for(int i=2; i<number; i++) {
+            if(number % i ==0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public int solution_4(int[] nums) {
+        int answer = 0;
+        int numLength = nums.length;
+
+        for(int i=0; i<numLength; i++) {
+            for(int j=i+1; j<numLength; j++) {
+                for(int k=j+1; k<numLength; k++) {
+                    if(primeNumberSe(nums[i]+nums[j]+nums[k])) answer++;
+                }
+            }
+        }
+
+        return answer;
+    }
+
+    // 약수의 개수와 덧셈
+    public int solution_3(int left, int right) {
+        int answer = 0;
+
+        //약수의 개수 구하기
+        for(int i=left; i<=right; i++) {
+            int measureCnt = getMeasure(i);
+            answer += measureCnt % 2 == 0 ? i : i*-1;
+        }
+
+        return answer;
+    }
+    // 약수 구하기
+    public int getMeasure(int num) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        for(int i=1; i<=num; i++) {
+            if(num%i == 0) arrayList.add(i);
+        }
+
+        return arrayList.size();
+    }
+
+    //3진법 뒤집기
+    public int solution_7(int n) {
+        int answer = 1;    // 결과 및 배열 길이
+        int[] array;       // 3진수 담을 배열
+        int remainder = 0; // 나머지
+        int arrN = n;      // 배열을 길이를 구하기 위한 변수
+        int power = 1;     // 거듭제곱 변수
+        int arrLength;     // 배열을 담는 변수
+
+        //n이 0미만이 될 때까지 반복한다.
+        while(arrN > 0) {
+            arrN = arrN/3;
+
+            if(arrN > 0) {
+                answer++; //answer변수는 임시로 배열 길이를 선언하기 위해 쓰였다.
+            }
+        }
+
+        array = new int[answer];
+        arrLength = array.length;
+
+        //배열의 길이로 사용 후 초기화
+        answer = 0;
+
+        //10진수 → 3진수로 구하는 공식 그리고 구함과 동시에 거꾸로 배열에 담는다.
+        for(int i=0; i<arrLength; i++) {
+            if(n > 0) {
+                array[i] = n%3;
+            }
+
+            n = n/3;
+        }
+
+        //거꾸로 뒤집은 배열을 그대로 10진수로 구하는 공식
+        arrLength--;
+        for(int i=0; i<array.length; i++) {
+
+            //Math.pow(double) : 거듭제곱 구하는 함수 & Math.round : 반올림하는 함수
+            power = Integer.parseInt(String.valueOf(Math.round(Math.pow(3, arrLength))));
+
+            answer += array[i]*power;
+
+            arrLength--;
+        }
+
+        return answer;
+    }
+
+    //예산
+    public int solution_2(int[] d, int budget) {
+        int answer = 0;
+
+        Arrays.sort(d);
+
+        for(int i=0; i<d.length; i++) {
+            budget -= d[i];
+
+            if(budget < 0) {
+                break;
+            }
+
+            answer ++;
+        }
+
+        return answer;
+    }
+
+    //나머지가 1이 되는 수 찾기
+    public int solution_6(int n) {
+        int answer = 0;
+
+        for(int i=1; i<n; i++) {
+            if(n%i != 0 && n%i == 1) return i;
+        }
+
+        return answer;
+    }
+
+    //부족한 금액 게산하기.
+    public long solution(int price, int money, int count) {
+        return Math.max(price * (count * (count + 1) / 2) - money, 0);
+    }
 
     //같은 숫자는 싫어
     public int[] solution_3(int []arr) {

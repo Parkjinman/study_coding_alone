@@ -1,16 +1,14 @@
 package level1.me;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class StringProblem {
 
-    //부족한 금액 게산하기.
-    public long solution(int price, int money, int count) {
-        return Math.max(price * (count * (count + 1) / 2) - money, 0);
-    }
+
 
     //[1차] 비밀지도
     public String[] solution(int n, int[] arr1, int[] arr2) {
