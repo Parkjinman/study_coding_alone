@@ -84,7 +84,7 @@ public class StackAndQueue2 {
         }
     }
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println(solution(scoville, K));
     }
 
