@@ -3,6 +3,7 @@ package studyExem;
 import java.util.ArrayList;
 
 public class studyMain2 {
+    //문제1. 31명의 학생 중 남자 12명 여자 14명이 봉사활동을 했다. 봉사활동을 안한 학생 수는?(객체 및 반복문 사용 필수)
     public static void main(String[] args) {
         Students man1 = new Students("남","박창우", "Y");
         Students man2 = new Students("남","박창오", "Y");
