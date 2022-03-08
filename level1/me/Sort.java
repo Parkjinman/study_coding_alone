@@ -1,11 +1,10 @@
 package level1.me;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Sort {
-
-    //
 
     //완주하지 못한 선수
     public String solution(String[] participant, String[] completion) {
@@ -54,5 +53,32 @@ public class Sort {
         }
 
         return answer;
+    }
+
+    //가장 큰 수
+//    static int[] numbers = {6, 10, 2};
+    static int[] numbers = {3, 30, 34, 5, 9};
+    public static String solution(int[] numbers) {
+        String answer = "";
+        int numbersLen = numbers.length;
+        String[] strs = new String[numbersLen];
+
+        for(int i=0; i<numbersLen; i++) {
+            strs[i] = String.valueOf(numbers[i]);
+        }
+
+        Arrays.sort(strs, Collections.reverseOrder());
+
+        answer = Arrays.toString(strs).replaceAll("[^0-9]","");;
+
+        for(int i=0; i<numbersLen; i++) {
+            System.out.println(strs[i]);
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solution(numbers));
     }
 }
