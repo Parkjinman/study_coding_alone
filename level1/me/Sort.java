@@ -2,6 +2,7 @@ package level1.me;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class Sort {
@@ -57,25 +58,34 @@ public class Sort {
 
     //가장 큰 수
 //    static int[] numbers = {6, 10, 2};
-    static int[] numbers = {3, 30, 34, 5, 9};
-    public static String solution(int[] numbers) {
-        String answer = "";
+//    static int[] numbers = {3, 30, 34, 5, 9};
+    static int[] numbers = {0, 0, 0, 0, 0};
+    public static StringBuilder solution(int[] numbers) {
         int numbersLen = numbers.length;
         String[] strs = new String[numbersLen];
 
+        StringBuilder stringBuilder = new StringBuilder();
+
+        boolean se = true;
         for(int i=0; i<numbersLen; i++) {
             strs[i] = String.valueOf(numbers[i]);
         }
 
-        Arrays.sort(strs, Collections.reverseOrder());
+//        Arrays.sort(strs, Collections.reverseOrder());
+        Arrays.sort(strs, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return (o2 + o1).compareTo(o1 + o2);
+            }
+        });
 
-        answer = Arrays.toString(strs).replaceAll("[^0-9]","");;
-
-        for(int i=0; i<numbersLen; i++) {
-            System.out.println(strs[i]);
+        if(!strs[0].equals("0")) {
+            stringBuilder.append(Arrays.toString(strs).replaceAll("[^0-9]", ""));
+        } else {
+            stringBuilder.append("0");
         }
 
-        return answer;
+        return stringBuilder;
     }
 
     public static void main(String[] args) {
