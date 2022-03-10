@@ -1,9 +1,6 @@
 package level1.me;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class Sort {
 
@@ -60,7 +57,7 @@ public class Sort {
 //    static int[] numbers = {6, 10, 2};
 //    static int[] numbers = {3, 30, 34, 5, 9};
     static int[] numbers = {0, 0, 0, 0, 0};
-    public static StringBuilder solution(int[] numbers) {
+    /*public static StringBuilder solution(int[] numbers) {
         int numbersLen = numbers.length;
         String[] strs = new String[numbersLen];
 
@@ -86,9 +83,41 @@ public class Sort {
         }
 
         return stringBuilder;
+    }*/
+
+//    H-index
+    static int[] citations = {3, 0, 6, 1, 5};
+    public static int solution(int[] citations) {
+        int answer = 0;
+        int citationsLen = citations.length;
+        Queue<Integer> hSet = new LinkedList<>();
+        Integer[] citationsWrap = new Integer[citationsLen];
+
+        for(int i=0; i < citationsLen; i++) {
+            citationsWrap[i] = citations[i];
+        }
+
+        Arrays.sort(citationsWrap, Collections.reverseOrder());
+
+        for(int i=0; i < citationsLen; i++) {
+            int count = 0;
+            for(int j=0; j < citationsLen; j++) {
+                if(citationsWrap[i] <= citationsWrap[j]) count++;
+            }
+
+            if(count == citationsWrap[i]) hSet.offer(citationsWrap[i]);
+        }
+
+        while(!hSet.isEmpty()) {
+            answer = hSet.poll();
+        }
+
+        return answer;
     }
 
     public static void main(String[] args) {
-        System.out.println(solution(numbers));
+//        System.out.println(solution(numbers));
+        solution(citations);
+//        System.out.println(solution(citations));
     }
 }
