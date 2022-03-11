@@ -87,29 +87,18 @@ public class Sort {
 
 //    H-index
     static int[] citations = {3, 0, 6, 1, 5};
+//    static int[] citations = {1, 1, 1, 2, 2};
     public static int solution(int[] citations) {
         int answer = 0;
-        int citationsLen = citations.length;
-        Queue<Integer> hSet = new LinkedList<>();
-        Integer[] citationsWrap = new Integer[citationsLen];
+        Arrays.sort(citations);
 
-        for(int i=0; i < citationsLen; i++) {
-            citationsWrap[i] = citations[i];
-        }
+        for(int i=0; i<citations.length; i++) {
+            int h = citations.length - i;
 
-        Arrays.sort(citationsWrap, Collections.reverseOrder());
-
-        for(int i=0; i < citationsLen; i++) {
-            int count = 0;
-            for(int j=0; j < citationsLen; j++) {
-                if(citationsWrap[i] <= citationsWrap[j]) count++;
+            if(citations[i] >= h) {
+                answer = h;
+                break;
             }
-
-            if(count == citationsWrap[i]) hSet.offer(citationsWrap[i]);
-        }
-
-        while(!hSet.isEmpty()) {
-            answer = hSet.poll();
         }
 
         return answer;
@@ -117,7 +106,7 @@ public class Sort {
 
     public static void main(String[] args) {
 //        System.out.println(solution(numbers));
-        solution(citations);
-//        System.out.println(solution(citations));
+//        solution(citations);
+        System.out.println(solution(citations));
     }
 }
