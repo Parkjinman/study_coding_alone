@@ -21,9 +21,9 @@ public class ExhaustiveSearch {
 
         // 숫자 조합 만들기 ex) 1, 7, 17, 71
         for(int i=0; i<strArr.length; i++) {
-            for() {
+            /*for() {
                 map.put(Integer.parseInt(strArr[i] + strArr[i + 1]), i);
-            }
+            }*/
             /*if(i > 0 && i < strArr.length-1) {
                 map.put(Integer.parseInt(strArr[i] + strArr[i - 1]), i);
                 map.put(Integer.parseInt(strArr[i] + strArr[i + 1]), i);
