@@ -30,26 +30,5 @@ public class JadenCase {
         System.out.println(solution("3peoPle 2unFollowed  2me"));
         System.out.println(solution("for the last week"));
         System.out.println(solution(" for  the   last    week     "));
-
-//        String answer = "";
-//        String s = " for  the   last    week     ";
-//        s = s.trim();
-//
-//        String[] arr = s.split("\\s");
-//
-//        int cnt = 0;
-//
-//        for(String str : arr) {
-//            cnt++;
-//            str = str.trim();
-//            if(!str.equals("")) {
-//                answer += str.substring(0, 1).toUpperCase();
-//                answer += str.substring(1).toLowerCase();
-//
-//                if(cnt != arr.length) answer += " "; else break;
-//            } else {
-//                answer += " ";
-//            }
-//        }
     }
 }
