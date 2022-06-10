@@ -1,19 +1,26 @@
-package level2.me;
+package level2.orther;
 
 public class NumberCountries124 {
     static String solution(int n) {
+        String[] numbers = {"4", "1", "2"};
         String answer = "";
 
-        answer = Integer.toBinaryString(111);
+        while(n > 0){
+            int remainder = n % 3;
+            n /= 3;
+
+            if(remainder == 0) n--;
+
+            answer = numbers[remainder] + answer;
+        }
 
         return answer;
     }
 
     public static void main(String[] args) {
-        System.out.println("1 : " + solution(1));  // 1
+//        System.out.println("1 : " + solution(1));  // 1
 //        System.out.println("2 : " + solution(2));  // 2
 //        System.out.println("3 : " + solution(3));  // 4
-//        System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡ");
 //        System.out.println("4 : " + solution(4));  // 11
 //        System.out.println("5 : " + solution(5));  // 12
 //        System.out.println("6 : " + solution(6));  // 14
@@ -46,6 +53,7 @@ public class NumberCountries124 {
 //        System.out.println("32 : " + solution(32));  // 214
 //        System.out.println("33 : " + solution(33));  // 214
 //        System.out.println("34 : " + solution(34));  // 214
-//        System.out.println("35 : " + solution(35));  // 214
+        System.out.println("35 : " + solution(35));  // 422
+        System.out.println("35 : " + solution(36));  // 422
     }
 }
