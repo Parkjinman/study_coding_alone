@@ -31,7 +31,7 @@ public class HowToLineUp {
 
     public static void main(String[] args) {
         // result : [3,1,2]
-        int n = 4;
+        int n = 3;
         int k = 5;
 
         System.out.println(solution(n, k));
