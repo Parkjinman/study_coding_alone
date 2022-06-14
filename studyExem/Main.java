@@ -6,9 +6,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        String str = scan.next();
+        String str = scan.nextLine();
 
-        System.out.println(str+"??!");
+        String[] arr = str.split("");
+
+        for(int i=0; i<arr.length; i++) {
+            int hour = 0;
+            int minute = 0;
+        }
+
+        System.out.println(str);
     }
 
     //14 30
