@@ -1,13 +1,18 @@
 package level2.me;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TowerOfHanoi {
     static ArrayList<int[]> arrayList = new ArrayList<>();
     static int[][] solution(int n) {
-        int[][] answer = {};
-
         hanoi(1,2,3, n);
+
+        int[][] answer = new int[arrayList.size()][2];
+
+        for(int i=0; i<arrayList.size(); i++) {
+            answer[i] = arrayList.get(i);
+        }
 
         return answer;
     }
@@ -19,7 +24,7 @@ public class TowerOfHanoi {
         else {
             hanoi(s, e, v, n-1);
             arrayList.add(move);
-            hanoi(e, v, s, n-1);
+            hanoi(v, s, e, n-1);
         }
     }
 
