@@ -1,43 +1,48 @@
 package baekjoon;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.OutputStreamWriter;
+import java.util.*;
 
 public class Set_BitMasking {
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static StringBuilder str = new StringBuilder();
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
         int M = scan.nextInt();
-        int bitset = 0;
+        int result = 0;
 
-        while(M-->0) {
-            int num;
-            String str = scan.next();
+        while( M-->0) {
+            String inputDataA = scan.next();
+            int inputDataB = 0;
 
-            switch (str) {
+            switch (inputDataA) {
                 case "add" :
-                    num = scan.nextInt();
-                    bitset |= (1 << (num-1));
+                    inputDataB = scan.nextInt();
+                    result |= (1 << (inputDataB-1));
                     break;
                 case "remove" :
-                    num = scan.nextInt();
-                    bitset = bitset & ~(1 << (num-1));
+                    inputDataB = scan.nextInt();
+                    result &= ~(1 << (inputDataB-1));
                     break;
                 case "check" :
-                    num = scan.nextInt();
-                    System.out.print((bitset & (1 << (num - 1))) != 0 ? "1\n" : "O\n");
+                    inputDataB = scan.nextInt();
+                    str.append((result & (1 << (inputDataB-1))) != 0 ? "1\n" : "0\n");
                     break;
                 case "toggle" :
-                    num = scan.nextInt();
-                    bitset ^= (1 << (num-1));
+                    inputDataB = scan.nextInt();
+                    result ^= (1 << (inputDataB-1));
                     break;
                 case "all" :
-                    bitset |= (~0);
+                    result |= (~0);
                     break;
                 case "empty" :
-                    bitset &= 0;
+                    result = 0;
                     break;
             }
         }
-        System.out.println();
+        bw.write(str.toString());
+        bw.close();
     }
 }
