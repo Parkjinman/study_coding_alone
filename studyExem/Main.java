@@ -5,41 +5,57 @@ import java.util.*;
 
 public class Main {
 //    static Stack<Integer> stack = new Stack<>();
-    static Queue<Integer> queue = new LinkedList<>();
-//    static ArrayList<Integer> list = new ArrayList<>();
+//    static Queue<Integer> queue = new LinkedList<>();
+    static ArrayList<Integer> list = new ArrayList<>();
 //    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
 
-    static HashMap<Integer, Integer> xMap = new HashMap<>();
+//    static HashMap<Integer, Integer> xMap = new HashMap<>();
 //    static HashMap<String, Integer> yMap = new HashMap<>();
 
 //    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 //    static StringBuilder str = new StringBuilder();
+
+    static int[][] positionArr = null;
     public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
-        int T = scan.nextInt(); // 테스트 케이스 수
-        int N = T;
-        int[] arr = new int[N];
-        int avg = 0;
+            Scanner scan = new Scanner(System.in);
 
-        while(T --> 0) {
-            int num = scan.nextInt();
-            arr[T] += num;
+            int T = scan.nextInt();
+
+        while (T-- > 0) {
+            try {
+                String P = scan.next();
+                int N = scan.nextInt();
+                scan.nextLine();
+                String str = scan.nextLine();
+
+                str = str.replaceAll("\\[", "");
+                str = str.replaceAll("\\]", "");
+                String[] arrStr = str.split(",");
+
+                for (String s : arrStr) {
+                    list.add(Integer.parseInt(s));
+                }
+
+                String[] arrP = P.split("");
+                for (String s : arrP) {
+                    switch (s) {
+                        case "R":
+                            list.sort(Collections.reverseOrder());
+                            break;
+                        case "D":
+                            list.remove(0);
+                            break;
+                    }
+                }
+
+
+                System.out.println(list);
+                list.clear();
+            } catch (Exception e) {
+                System.out.println("error");
+            }
         }
-
-        Arrays.sort(arr);
-
-        for(int i=0; i<arr.length; i++) {
-            avg += arr[i];
-
-            if(xMap.get(arr[i]) != null) xMap.put(arr[i], xMap.get(arr[i])+1);
-            else xMap.put(arr[i], 1);
-        }
-
-        System.out.println(avg/N); // 산술평균
-        System.out.println(); // 중앙값
-        System.out.println(xMap); // 최빈값
-        System.out.println(Math.abs(arr[0]-arr[N-1])); // 범위
     }
 }
 
