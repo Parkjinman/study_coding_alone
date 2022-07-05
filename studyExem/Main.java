@@ -1,6 +1,8 @@
 package studyExem;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
@@ -12,28 +14,26 @@ public class Main {
 //    static HashMap<Integer, Integer> xMap = new HashMap<>();
 //    static HashMap<String, Integer> yMap = new HashMap<>();
 
-//    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 //    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 //    static StringBuilder str = new StringBuilder();
 
     static int[][] positionArr = null;
     public static void main(String[] args) throws IOException {
-            Scanner scan = new Scanner(System.in);
+//        Scanner scan = new Scanner(System.in);
 
-            int T = scan.nextInt();
+        int T = Integer.parseInt(br.readLine());
 
         while (T-- > 0) {
             try {
-                String P = scan.next();
-                int N = scan.nextInt();
-                scan.nextLine();
-                String str = scan.nextLine();
+                String P = br.readLine();
+                int N = Integer.parseInt(br.readLine());
+                String str = br.readLine();
 
-                str = str.replaceAll("\\[", "");
-                str = str.replaceAll("\\]", "");
-                String[] arrStr = str.split(",");
+                String[] arrStr = str.split("[^0-9]");
 
                 for (String s : arrStr) {
+                    if (!s.equals(""))
                     list.add(Integer.parseInt(s));
                 }
 
@@ -41,7 +41,7 @@ public class Main {
                 for (String s : arrP) {
                     switch (s) {
                         case "R":
-                            list.sort(Collections.reverseOrder());
+                            Collections.reverse(list);
                             break;
                         case "D":
                             list.remove(0);
@@ -49,13 +49,13 @@ public class Main {
                     }
                 }
 
-
                 System.out.println(list);
                 list.clear();
             } catch (Exception e) {
                 System.out.println("error");
             }
         }
+        br.close();
     }
 }
 

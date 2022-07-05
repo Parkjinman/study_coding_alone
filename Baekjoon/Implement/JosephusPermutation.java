@@ -1,7 +1,5 @@
-package baekjoon;
+package Baekjoon.Implement;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;

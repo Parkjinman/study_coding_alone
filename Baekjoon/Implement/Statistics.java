@@ -1,4 +1,4 @@
-package baekjoon;
+package Baekjoon.Implement;
 
 import java.io.IOException;
 import java.util.*;

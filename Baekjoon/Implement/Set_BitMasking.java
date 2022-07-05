@@ -1,4 +1,4 @@
-package baekjoon;
+package Baekjoon.Implement;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
