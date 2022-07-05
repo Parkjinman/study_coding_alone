@@ -8,7 +8,7 @@ import java.util.*;
 public class Main {
 //    static Stack<Integer> stack = new Stack<>();
 //    static Queue<Integer> queue = new LinkedList<>();
-    static ArrayList<Integer> list = new ArrayList<>();
+//    static ArrayList<Integer> list = new ArrayList<>();
 //    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
 
 //    static HashMap<Integer, Integer> xMap = new HashMap<>();
@@ -18,7 +18,9 @@ public class Main {
 //    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 //    static StringBuilder str = new StringBuilder();
 
-    static int[][] positionArr = null;
+//    static int[][] positionArr = null;
+    static ArrayDeque<String> deque = new ArrayDeque<>();
+
     public static void main(String[] args) throws IOException {
 //        Scanner scan = new Scanner(System.in);
 
@@ -34,23 +36,33 @@ public class Main {
 
                 for (String s : arrStr) {
                     if (!s.equals(""))
-                    list.add(Integer.parseInt(s));
+                        deque.addLast(s);
                 }
+                int dSize = deque.size();
 
                 String[] arrP = P.split("");
                 for (String s : arrP) {
                     switch (s) {
                         case "R":
-                            Collections.reverse(list);
+//                            Collections.reverse(deque);
+                            String[] dqArr = new String[dSize];
+                            for(int i=0; i<dSize; i++) {
+                                dqArr[i] = deque.removeLast();
+                            }
+
+                            for(int i=0; i<dSize; i++) {
+                                deque.addLast(dqArr[i]);
+                            }
+
                             break;
                         case "D":
-                            list.remove(0);
+                            deque.removeFirst();
                             break;
                     }
                 }
 
-                System.out.println(list);
-                list.clear();
+                System.out.println(deque);
+                deque.clear();
             } catch (Exception e) {
                 System.out.println("error");
             }
