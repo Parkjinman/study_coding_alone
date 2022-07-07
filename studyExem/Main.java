@@ -27,24 +27,40 @@ public class Main {
         int N = scan.nextInt();
         int M = scan.nextInt();
         int position = 0;
+        int positionCp = 0;
+        int result = 0;
+        int n = N/2;
+
+        for(int i=0; i<N; i++) {
+            deque.addLast(i+1);
+        }
 
         while(M --> 0) {
             position = scan.nextInt();
-            System.out.println(position);
+
+            Iterator<Integer> iterator = deque.iterator();
+            int i=1;
+            while(iterator.hasNext()) {
+                if(iterator.next() == position) positionCp = iterator.next();
+                i++;
+            }
+
+            while(position != deque.getFirst()) {
+                //왼쪽
+                if(positionCp < n) deque.addLast(deque.removeFirst());
+                //오른쪽
+                else deque.addFirst(deque.removeLast());
+
+                result++;
+            }
 
             if(position == deque.getFirst()) {
                 deque.removeFirst();
-            } else {
-
-                if(position/2 < N/2) ;
             }
         }
 
-        while(N --> 0) {
-            deque.addFirst(N+1);
-        }
-
-        System.out.println(deque);
+        System.out.println(deque.getClass());
+        System.out.println(result);
     }
 }
 
