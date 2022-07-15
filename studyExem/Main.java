@@ -1,7 +1,10 @@
 package studyExem;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.*;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
 //    static Stack<Integer> stack = new Stack<>();
@@ -17,30 +20,39 @@ public class Main {
 //    static StringBuilder sb = new StringBuilder();
 
 //    static int[][] positionArr = null;
-    static ArrayDeque<Integer> deque = new ArrayDeque<>();
+//    static ArrayDeque<Integer> deque = new ArrayDeque<>();
+    static int zero = 0;
+    static int one = 0;
 
-    static int solution(int num, int five, int three) {
-        if(num == 0) return five+three;
-        else if(num < 0) return -1;
-
-        if( (num%5 == 3 || num%5 == 0) && num%5 != 4 && num%5 != 1) {
-            num -= 5;
-            five++;
-        } else if(num%3 == 0) {
-            num -= 3;
-            three++;
+    static int fibonacci(int n) {
+        if(n==0) {
+            zero++;
+            return 0;
+        } else if(n==1) {
+            one++;
+            return 1;
+        } else {
+            return fibonacci(n-1) + fibonacci(n-2);
         }
-
-        return solution(num, five, three);
     }
     public static void main(String[] args) throws IOException {
+//        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+//        int A = Integer.parseInt(st.nextToken());
+
         Scanner scan = new Scanner(System.in);
+        int T = scan.nextInt();
 
-        int bagCnt = scan.nextInt();
-        int five = 0;
-        int three = 0;
+        // 성능을 향상시키려면 DP의 메모제이션을 활용한 설계 개선 필요
+        while(T-->0) {
+            int N = scan.nextInt();
+            zero = 0;
+            one = 0;
 
-        System.out.println(solution(bagCnt, five, three));
+            fibonacci(N);
+            System.out.println(zero+" "+one);
+        }
+
+
     }
 }
 
