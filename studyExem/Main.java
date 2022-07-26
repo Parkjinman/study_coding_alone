@@ -1,13 +1,42 @@
 package studyExem;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        int K = scan.nextInt();
+
+        /** 시간측정 start */
+//        long beforeTime = System.currentTimeMillis();
+
+        int[] arr = new int[N];
+        for(int i=0; i<N; i++) {
+            arr[i] = scan.nextInt();
+        }
+
+        int result = 0;
+        for(int i=N-1; i>0; i--) {
+            if(K == 0) break;
+
+            if(K - arr[i] >= 0) {
+                K -= arr[i];
+                result ++;
+                i = N;
+            }
+        }
+
+        System.out.println(result);
+
+        /** 시간측정 end */
+//        long afterTime = System.currentTimeMillis();
+//        long secDiffTime = (afterTime - beforeTime)/1000;
+//        System.out.println("시간차이(m) : "+secDiffTime);
+
+    }
+}
 //    static Stack<Integer> stack = new Stack<>();
 //    static Queue<Integer> queue = new LinkedList<>();
 //    static ArrayList<Integer> list = new ArrayList<>();
@@ -23,49 +52,8 @@ public class Main {
 //    static int[][] positionArr = null;
 //    static ArrayDeque<Integer> deque = new ArrayDeque<>();
 
-    public static void main(String[] args) throws IOException {
 //        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 //        int A = Integer.parseInt(st.nextToken());
-
-        HashMap map = new HashMap();
-        Scanner scan = new Scanner(System.in);
-        int T = scan.nextInt();
-
-        int[] arr = new int[T];
-        int result = 0;
-
-        for(int i=0; i<T; i++) {
-            int red = scan.nextInt();
-            int green = scan.nextInt();
-            int blue = scan.nextInt();
-
-            map.put(red, "red");
-            map.put(green, "green");
-            map.put(blue, "blue");
-
-            if(i == 0) {
-                arr[i] = Math.min(red, green);
-                arr[i] = Math.min(arr[i], blue);
-            }
-
-            if(i-1 >= 0) {
-                if (map.get(arr[i - 1]).equals("red")) {
-                    arr[i] = Math.min(green, blue);
-                } else if (map.get(arr[i - 1]).equals("green")) {
-                    arr[i] = Math.min(red, blue);
-                } else if (map.get(arr[i - 1]).equals("blue")) {
-                    arr[i] = Math.min(red, green);
-                }
-            }
-
-            result += arr[i];
-        }
-
-        System.out.println(result);
-
-    }
-}
-
 
 //        while(true) {
 //            String[] arr = br.readLine().split(" ");
