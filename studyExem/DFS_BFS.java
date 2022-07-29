@@ -1,113 +1,80 @@
 package studyExem;
 
-import sun.misc.Queue;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Stack;
-
-class Graph {
-    class Node {
-        int data;
-        LinkedList<Node> adjacent;
-        boolean marked;
-        Node(int data) {
-            this.data = data;
-            this.marked = false;
-            adjacent = new LinkedList<Node>();
-        }
-    }
-    Node[] nodes;
-    Graph(int size) {
-        nodes = new Node[size];
-        for(int i=0; i<size; i++) {
-            nodes[i] = new Node(i);
-        }
-    }
-    void addEdge(int i1, int i2) {
-        Node n1 = nodes[i1];
-        Node n2 = nodes[i2];
-        if(!n1.adjacent.contains(n2)) {
-            n1.adjacent.add(n2);
-        }
-        if(!n2.adjacent.contains(n1)) {
-            n2.adjacent.add(n1);
-        }
-    }
-    void dfs() {
-        dfs(0);
-    }
-    void dfs(int index) {
-        Node root = nodes[index];
-        Stack<Node> stack = new Stack<Node>();
-        stack.push(root);
-        root.marked = true;
-        while(!stack.isEmpty()) {
-            Node r = stack.pop();
-            for(Node n : r.adjacent) {
-                if(n.marked == false) {
-                    n.marked = true;
-                    stack.push(n);
-                }
-            }
-            visit(r);
-        }
-    }
-    void bfs() throws InterruptedException {
-        bfs(0);
-    }
-    void bfs(int index) throws InterruptedException {
-        Node root = nodes[index];
-        Queue<Node> queue = new Queue<Node>();
-        queue.enqueue(root);
-        root.marked = true;
-        while(!queue.isEmpty()) {
-            Node r = queue.dequeue();
-            for(Node n : r.adjacent) {
-                if(n.marked == false) {
-                    n.marked = true;
-                    queue.enqueue(n);
-                }
-            }
-            visit(r);
-        }
-    }
-
-    void dfsR(Node r) {
-        if(r == null) return;
-        r.marked = true;
-        visit(r);
-        for(Node n : r.adjacent) {
-            if(n.marked == false) {
-                dfsR(n);
-            }
-        }
-    }
-    void dfsR(int index) {
-        Node r = nodes[index];
-        dfsR(r);
-    }
-    void dfsR() {
-        dfsR(0);
-    }
-
-    void visit(Node n) {
-        System.out.print(n.data + " ");
-    }
-}
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class DFS_BFS {
-    public static void main(String[] args) {
-        Graph g = new Graph(9);
-        g.addEdge(0, 1);
-        g.addEdge(1, 2);
-        g.addEdge(1, 3);
-        g.addEdge(2, 4);
-        g.addEdge(2, 3);
-        g.addEdge(3, 4);
-        g.addEdge(3, 5);
-        g.addEdge(5, 6);
-        g.addEdge(5, 7);
-        g.addEdge(6, 8);
-        g.dfs(3);
+    static StringBuilder sb = new StringBuilder();
+    static boolean[] check;
+    static int[][] arr;
+
+    static int node, line, start;
+
+    static Queue<Integer> q = new LinkedList<>();
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        node = Integer.parseInt(st.nextToken());
+        line = Integer.parseInt(st.nextToken());
+        start= Integer.parseInt(st.nextToken());
+
+        arr = new int[node+1][node+1];
+        check = new boolean[node+1];
+
+        for(int i = 0 ; i < line ; i ++) {
+            StringTokenizer str = new StringTokenizer(br.readLine());
+
+            int a = Integer.parseInt(str.nextToken());
+            int b = Integer.parseInt(str.nextToken());
+
+            arr[a][b] = arr[b][a] =  1;
+        }
+        //sb.append("\n");
+        dfs(start);
+        sb.append("\n");
+        check = new boolean[node+1];
+
+        bfs(start);
+
+        System.out.println(sb);
+
+    }
+    public static void dfs(int start) {
+
+        check[start] = true;
+        sb.append(start + " ");
+
+        for(int i = 0 ; i <= node ; i++) {
+            if(arr[start][i] == 1 && !check[i])
+                dfs(i);
+        }
+
+    }
+
+    public static void bfs(int start) {
+        q.add(start);
+        check[start] = true;
+
+        while(!q.isEmpty()) {
+
+            start = q.poll();
+            sb.append(start + " ");
+
+            for(int i = 1 ; i <= node ; i++) {
+                if(arr[start][i] == 1 && !check[i]) {
+                    q.add(i);
+                    check[i] = true;
+                }
+            }
+        }
+
     }
 }
