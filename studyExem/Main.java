@@ -1,92 +1,32 @@
 package studyExem;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
 public class Main {
-    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
-        int N = scan.nextInt();
-        int M = scan.nextInt();
 
-        int result = 0;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        String[][] chessBoard = new String[N][M];
-        int[] compareArr = new int[(N-7)*(M-7)];
-        scan.nextLine();
+		/*
+		  -1000000 ~ 1000000
+		  기준점 0 = index 100000 으로 생각
+		*/
+        boolean[] arr = new boolean[2000001];
 
-        // 체스판 입력받기
-        for(int i=0; i<N; i++) {
-            chessBoard[i] = scan.nextLine().split("");
+        int N = Integer.parseInt(br.readLine());
+
+        for(int i = 0; i < N; i++) {
+            arr[Integer.parseInt(br.readLine()) + 1000000] = true;
         }
 
-        HashMap<String, String> map = new HashMap<>();
-        map.put("B", "W");
-        map.put("W", "B");
-
-        boolean changeSe = false;
-        int nC = 0;
-        int mC = 0;
-        int compareArrIdx = 0;
-
-        while(true) {
-            String strTemp = "";
-
-            if(N-7 == nC) {
-                nC = 0;
-                mC++;
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i]) {
+                sb.append((i - 1000000)).append('\n');
             }
-
-            if(M-7 == mC) break;
-
-            for (int i = nC; i < 8+nC; i++) {
-                for (int j = mC; j < 8+mC; j++) {
-
-                    if(strTemp.equals(chessBoard[i][j])) {
-                        changeSe = true;
-                    }
-                    strTemp = chessBoard[i][j];
-
-                    if(changeSe && i > nC) {
-                        chessBoard[i][j] = map.get(chessBoard[i][j]);
-                        compareArr[compareArrIdx]++;
-                    }
-
-                    System.out.print(chessBoard[i][j]);
-                }
-                System.out.println();
-            }
-            compareArrIdx++;
-            nC++;
-            System.out.println();
         }
-
-//        System.out.println(Arrays.deepToString(compareArr));
-        System.out.println(Arrays.toString(compareArr));
-        System.out.println(result);
+        System.out.print(sb);
     }
 }
-
-//        10 13
-//        BBBBBBBBWBWBW
-//        BBBBBBBBBWBWB
-//        BBBBBBBBWBWBW
-//        BBBBBBBBBWBWB
-//        BBBBBBBBWBWBW
-//        BBBBBBBBBWBWB
-//        BBBBBBBBWBWBW
-//        BBBBBBBBBWBWB
-//        WWWWWWWWWWBWB
-//        WWWWWWWWWWBWB
-
-//        BBBWBWBW 1
-//        BBBBWBWB 2
-//        BBBWBWBW 1
-//        BBBBWBWB 2
-//        BBBWBWBW 1
-//        BBBBWBWB 2
-//        BBBWBWBW 1
-//        BBBBWBWB 2

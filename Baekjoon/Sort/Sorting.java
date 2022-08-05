@@ -1,48 +1,25 @@
 package Baekjoon.Sort;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sorting {
-    static int[] tmp, arr;
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int N = scan.nextInt();
-        arr = new int[N];
-        tmp = new int[N];
-        
-        for(int i=0; i<N; i++) {
-            arr[i] = scan.nextInt();
-        }
-
-        mergeSort(0, arr.length-1);
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static ArrayList<Integer> list = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        int N = Integer.parseInt(br.readLine());
 
         for(int i=0; i<N; i++) {
-            System.out.println(arr[i]);
+            list.add(Integer.parseInt(br.readLine()));
         }
-    }
 
-    /** 병합 정렬 */
-    public static void mergeSort(int start, int end) {
-        if (start<end) {
-            int mid = (start+end) / 2;
-            mergeSort(start, mid);
-            mergeSort(mid+1, end);
+        Collections.sort(list);
 
-            int p = start;
-            int q = mid + 1;
-            int idx = p;
-
-            while (p<=mid || q<=end) {
-                if (q>end || (p<=mid && arr[p]<arr[q])) {
-                    tmp[idx++] = arr[p++];
-                } else {
-                    tmp[idx++] = arr[q++];
-                }
-            }
-
-            for (int i=start;i<=end;i++) {
-                arr[i]=tmp[i];
-            }
+        for(int i=0; i<N; i++) {
+            System.out.println(list.get(i));
         }
     }
 }
