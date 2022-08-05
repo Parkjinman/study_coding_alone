@@ -47,3 +47,24 @@ public class FilmDirector {
         return Math.min(B,W);
     }
 }
+
+//        10 10
+//        BBBBBBBBBB
+//        BBWBWBWBWB
+//        BWBWBWBWBB
+//        BBWBWBWBWB
+//        BWBWBWBWBB
+//        BBWBWBWBWB
+//        BWBWBWBWBB
+//        BBWBWBWBWB
+//        BWBWBWBWBB
+//        BBBBBBBBBB
+
+//        BWBWBWBW
+//        WBWBWBWB
+//        BWBWBWBW
+//        WBWBWBWB
+//        BWBWBWBW
+//        WBWBWBWB
+//        BWBWBWBW
+//        WBWBWBWB
