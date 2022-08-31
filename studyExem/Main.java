@@ -26,9 +26,6 @@ public class Main {
             if(temp1.equals("P")) temp2 = st.nextToken();
             else temp2 = "";
 
-            System.out.println(temp1);
-            System.out.println(temp2);
-
             switch(temp1) {
                 case "P" :
                     list.add(temp2);
