@@ -1,44 +1,51 @@
 package studyExem;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.regex.Pattern;
 
 public class Main {
-    static LinkedList<String> list = new LinkedList<>();
-
+    static Stack<String> stack = new Stack<>();
+    static Queue<String> queue = new LinkedList<>();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         String str = br.readLine();
         String[] arr = str.split("");
+
+
+        boolean execSe = false;
+        // A+B*C-D/E
         for(int i=0; i<arr.length; i++) {
-            list.add(arr[i]);
-        }
-
-        int N = Integer.parseInt(br.readLine());
-        String temp1, temp2 = null;
-        while(N-->0) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            temp1 = st.nextToken();
-            if(temp1.equals("P")) temp2 = st.nextToken();
-            else temp2 = "";
-
-            switch(temp1) {
-                case "P" :
-                    list.add(temp2);
-                    break;
-                case "L" : //
-
-                    break;
-                case "D" :
-
-                    break;
-                default :
-                    break;
+            if(Pattern.matches("^[a-zA-Z]*$", arr[i])) {
+                queue.offer(arr[i]);
+                if(execSe) {
+                    while (!queue.isEmpty()) {
+                        bw.write(queue.poll());
+                    }
+                    while (!stack.isEmpty()) {
+                        bw.write(stack.pop());
+                    }
+                    execSe = false;
+                }
+            } else {
+                if(!arr[i].equals("(") && !arr[i].equals(")")) stack.push(arr[i]);
+                if(stack.size() > 1) execSe = true;
             }
         }
+
+        while (!queue.isEmpty()) {
+            bw.write(queue.poll());
+        }
+        while (!stack.isEmpty()) {
+            bw.write(stack.pop());
+        }
+
+
+        bw.flush();
+        bw.close();
     }
 }
