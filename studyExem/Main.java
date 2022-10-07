@@ -1,30 +1,33 @@
 package studyExem;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+    static ArrayList<int[]> list = new ArrayList<>();
+    static ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
     public static void main(String[] args) throws IOException {
-        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B551182/mcatInfoService/getPaymentNonPaymentList?ServiceKey=z2kDCblioWGus1wRE01KHMPXHKyBF%2FXeQRWgUMAUAhTKK5F61DuDlHgdfbpUMO8UKyvn1FL3iJxOY4VedrKIpA%3D%3D&numOfRows=10&pageNo=1&itmNm=''"); /*URL*/
-        URL url = new URL(urlBuilder.toString());
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("Response code: " + conn.getResponseCode());
-        BufferedReader rd;
-        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        } else {
-            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        Scanner scan = new Scanner(System.in);
+        String inputData = scan.nextLine();
+        String[] arr = inputData.split(" ");
+
+        int n = Integer.parseInt(arr[0]);
+        int k = Integer.parseInt(arr[1]);
+
+        for(int i=1; i<=n+1; i++) {
+            int[] pascal = new int[i];
+            for(int j=0; j<i; j++) {
+
+                if(i-1 == j || j == 0) {
+                    pascal[j] = 1;
+                } else {
+                    pascal[j] = list.get(i-2)[j-1] + list.get(i-2)[j];
+                }
+            }
+            list.add(pascal);
         }
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = rd.readLine()) != null) {
-            sb.append(line);
-        }
-        rd.close();
-        conn.disconnect();
-        System.out.println(sb.toString());
+
+        System.out.println(list.get(n)[k]);
     }
 }
