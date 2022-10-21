@@ -1,7 +1,9 @@
 package studyExem;
 
 import java.io.*;
-import java.util.HashMap;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+//import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -9,69 +11,38 @@ public class Main {
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     static StringBuilder sb = new StringBuilder();
 
-    static HashMap<Character, Integer> map = new HashMap<>();
+//    static HashMap<Character, Integer> map = new HashMap<>();
+    static ArrayList<Integer> list = new ArrayList<>();
+//    static boolean[] primeAt = new boolean[1000001]; /*소수용 배열*/
 
     public static void main(String[] args) throws IOException {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        String N = st.nextToken();
-        int B = Integer.parseInt(st.nextToken());
+        int A = Integer.parseInt(st.nextToken()); //미래
+        int B = Integer.parseInt(st.nextToken()); //정이가 사용
+        int numOfDesits = Integer.parseInt(br.readLine());
 
-        String[] arr = N.split("");
-        for(int i=0; i<arr.length; i++) {
-            System.out.println((int)arr[i].charAt(0));
+        st = new StringTokenizer(br.readLine());
+        // 10진수 변환
+        int decimalNum = 0;
+        for (int i = numOfDesits; i > 0; i--) {
+            int num = Integer.parseInt(st.nextToken());
+            decimalNum += num * Math.pow(A, i - 1);
         }
 
-//        while(true) {
-//            if(N == 0) break;
-//
-//            sb.append(result[N % B]);
-//            N /= B;
-//        }
-//
-//        bw.write(String.valueOf(sb.reverse()));
-
+        if(decimalNum == 0){
+            sb.append(0);
+        }
+        // B진수로 변환
+        while(decimalNum != 0){
+            list.add(decimalNum % B);
+            decimalNum/=B;
+        }
+        for (int i = list.size()-1; i >= 0; i--) {
+            sb.append(list.get(i) + " ");
+        }
+        bw.write(sb+"");
         bw.flush();
         bw.close();
-    }
-
-    static void mapSetting() {
-        map.put('0', 0);
-        map.put('1', 1);
-        map.put('2', 2);
-        map.put('3', 3);
-        map.put('4', 4);
-        map.put('5', 5);
-        map.put('6', 6);
-        map.put('7', 7);
-        map.put('8', 8);
-        map.put('9', 9);
-        map.put('A', 10);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 11);
-        map.put('B', 25);
-        map.put('B', 26);
-        map.put('B', 27);
-        map.put('B', 28);
-        map.put('B', 29);
-        map.put('B', 30);
-        map.put('B', 31);
-        map.put('B', 32);
-        map.put('B', 33);
-        map.put('B', 34);
-        map.put('B', 35);
-        map.put('B', 36);
     }
 }
