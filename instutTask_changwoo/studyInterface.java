@@ -1,4 +1,4 @@
-package instutTask;
+package instutTask_changwoo;
 
 public interface studyInterface {
 

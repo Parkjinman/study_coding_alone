@@ -1,4 +1,4 @@
-package instutTask;
+package instutTask_changwoo;
 
 public class StudyImplements implements studyInterface {
 

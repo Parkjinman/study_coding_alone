@@ -1,6 +1,6 @@
 package programers.level2.me;
 
-import object.level2Object.Truck;
+import programers.object.level2Object.Truck;
 
 import java.util.*;
 
