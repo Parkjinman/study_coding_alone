@@ -1,48 +1,39 @@
 package studyExem;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-//import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static StringBuilder sb = new StringBuilder();
+    static String[] aStr;
+    static int n;
+    static int resultCnt;
 
-//    static HashMap<Character, Integer> map = new HashMap<>();
-    static ArrayList<Integer> list = new ArrayList<>();
-//    static boolean[] primeAt = new boolean[1000001]; /*소수용 배열*/
+    static void solution(int a, int b) {
+        if(b+1 == n) return; // 끝까지 완전탐색했다면 종료
 
-    public static void main(String[] args) throws IOException {
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++) {
+            if(i == a || i == b) continue; //합으로 선택된 두 수는 더할 수 없음
 
-        int A = Integer.parseInt(st.nextToken()); //미래
-        int B = Integer.parseInt(st.nextToken()); //정이가 사용
-        int numOfDesits = Integer.parseInt(br.readLine());
+            int num = Integer.parseInt(aStr[a]) + Integer.parseInt(aStr[b]);
+            int compareNum = Integer.parseInt(aStr[i]);
 
-        st = new StringTokenizer(br.readLine());
-        // 10진수 변환
-        int decimalNum = 0;
-        for (int i = numOfDesits; i > 0; i--) {
-            int num = Integer.parseInt(st.nextToken());
-            decimalNum += num * Math.pow(A, i - 1);
+            if(num == compareNum) {
+                resultCnt++;
+            }
         }
 
-        if(decimalNum == 0){
-            sb.append(0);
+        solution(a, b+1);
+    }
+
+    public static void main(String args[]) throws Exception {
+        n = Integer.parseInt(br.readLine());
+        aStr = br.readLine().split(" ");
+
+        for(int i=0; i+1<n; i++) {
+            solution(i, i+1);
         }
-        // B진수로 변환
-        while(decimalNum != 0){
-            list.add(decimalNum % B);
-            decimalNum/=B;
-        }
-        for (int i = list.size()-1; i >= 0; i--) {
-            sb.append(list.get(i) + " ");
-        }
-        bw.write(sb+"");
-        bw.flush();
-        bw.close();
+
+        System.out.println(resultCnt);
     }
 }
