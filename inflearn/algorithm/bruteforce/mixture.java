@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * nums = {1, 2, 3, 4} 에서 3개를 뽑는 조합을 구하시오.
+ */
 public class mixture {
     static int[] nums = {1, 2, 3, 4};
     static Stack<Integer> current = new Stack<>();

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * nums = {1, 2, 3, 4} 에서 모든 부분집합을 구하시오.
+ */
 public class subset {
     static int[] nums = {1, 2, 3, 4};
     static Stack<Integer> current = new Stack<>();

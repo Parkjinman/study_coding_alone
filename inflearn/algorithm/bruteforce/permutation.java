@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Permutation - 순열 (순서를 고려한 조합)
+ * nums = {1, 2, 3, 4} 에서 순열을 구하시오.
  */
 public class permutation {
     static int[] nums = {1, 2, 3, 4};
