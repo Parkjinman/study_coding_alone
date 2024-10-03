@@ -4,37 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Permutation - 순열 (순서를 고려한 조합)
- */
-public class permutation {
+public class mixture {
     static int[] nums = {1, 2, 3, 4};
     static Stack<Integer> current = new Stack<>();
     static List<List<Integer>> answer = new Stack<>();
 
     public static void main(String[] args) {
-        permutation(current);
+        mixture(current);
 
         System.out.println(answer);
         System.out.println(answer.size());
     }
 
-    /**
-     * 재귀로 완전탐색 구현
-     */
-    private static void permutation(Stack<Integer> current) {
-        if (current.size() == nums.length) {
+    private static void mixture(Stack<Integer> current) {
+
+        if (current.size() == 2) {
             answer.add(new ArrayList<>(current));
             return;
         }
 
         for (int num : nums) {
+            if (!current.isEmpty() && current.firstElement() > num) {
+                continue;
+            }
             if (!current.contains(num)) {
                 current.add(num);
-                permutation(current);
+                mixture(current);
                 current.pop();
             }
         }
-    }
 
+    }
 }
