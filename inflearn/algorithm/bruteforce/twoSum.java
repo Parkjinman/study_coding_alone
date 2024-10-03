@@ -33,9 +33,11 @@ public class twoSum {
             answer.add(new ArrayList<>(current));
             temp = new ArrayList<>(current);
             int sum = 0;
+
             for (int i = 0; i < temp.size(); i++) {
                 sum += temp.get(i);
             }
+
             if (sum == target) {
                 isTrue = true;
                 return;
