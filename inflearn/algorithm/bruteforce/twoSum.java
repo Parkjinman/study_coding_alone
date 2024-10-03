@@ -21,6 +21,7 @@ public class twoSum {
         System.out.println(answer);
         System.out.println(answer.size());
         System.out.println(isTrue);
+        System.out.println(temp);
     }
 
     private static void twoSum(int start, Stack<Integer> current) {
@@ -28,7 +29,7 @@ public class twoSum {
             return;
         }
 
-        if (current.size() == 2) {
+        if (current.size() == 3) {
             answer.add(new ArrayList<>(current));
             temp = new ArrayList<>(current);
             int sum = 0;
