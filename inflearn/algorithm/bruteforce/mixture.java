@@ -8,28 +8,26 @@ public class mixture {
     static int[] nums = {1, 2, 3, 4};
     static Stack<Integer> current = new Stack<>();
     static List<List<Integer>> answer = new Stack<>();
+    static int mixtureCount = 2;
 
     public static void main(String[] args) {
-        mixture(current);
+        mixture(0, current);
 
         System.out.println(answer);
         System.out.println(answer.size());
     }
 
-    private static void mixture(Stack<Integer> current) {
+    private static void mixture(int start, Stack<Integer> current) {
 
-        if (current.size() == 2) {
+        if (current.size() == mixtureCount) {
             answer.add(new ArrayList<>(current));
             return;
         }
 
-        for (int num : nums) {
-            if (!current.isEmpty() && current.firstElement() > num) {
-                continue;
-            }
-            if (!current.contains(num)) {
-                current.add(num);
-                mixture(current);
+        for (int i = start+1; i <= nums.length; i++) {
+            if (!current.contains(i)) {
+                current.add(i);
+                mixture(i, current);
                 current.pop();
             }
         }
