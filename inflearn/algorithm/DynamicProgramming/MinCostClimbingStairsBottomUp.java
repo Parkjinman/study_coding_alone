@@ -9,27 +9,25 @@ package inflearn.algorithm.DynamicProgramming;
  */
 public class MinCostClimbingStairsBottomUp {
     static int[] dp;
-    static int[] cost = {10, 15, 20};
+//    static int[] cost = {10, 15, 20};
 //    static int[] cost = {10, 15, 20, 17, 1};
-//    static int[] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+    static int[] cost = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
 
     public static void main(String[] args) {
         int num = cost.length;
 
         dp = new int[cost.length + 1];
-        dp[0] = 0;
-        dp[1] = cost[0];
-        dp[2] = cost[1];
 
         System.out.println(minCostClimbingStairs(num));
     }
 
     private static int minCostClimbingStairs(int num) {
         if (num == 0 || num == 1) {
+            dp[num] = 0;
             return 0;
         }
 
-        for (int i = 3; i <= num; i++) {
+        for (int i = 2; i <= num; i++) {
             dp[i] = Math.min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
         }
 

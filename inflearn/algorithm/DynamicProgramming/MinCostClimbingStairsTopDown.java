@@ -1,5 +1,7 @@
 package inflearn.algorithm.DynamicProgramming;
 
+import java.util.Arrays;
+
 /**
  * cost = {10, 15, 20} 이 주어졌을 때, 최소 비용으로 계단을 오르는 방법을 구하시오.
  * 계단은 한 번에 한 계단 혹은 두 계단씩 오를 수 있다.
@@ -32,6 +34,30 @@ public class MinCostClimbingStairsTopDown {
         dp[num] = Math.min(minCostClimbingStairs(num - 1) + cost[num - 1], minCostClimbingStairs(num - 2) + cost[num - 2]);
 
         return dp[num];
+    }
+
+    class Solution {
+        private int[] dp = new int[1001];
+        private int costLen = 0;
+
+        public int minCostClimbingStairs(int[] cost) {
+            costLen = cost.length;
+            Arrays.fill(dp, -1);
+            return minCostCalculator(cost.length, cost);
+        }
+
+        private int minCostCalculator(int n, int[] cost) {
+            if (n == 0 || n == 1) {
+                dp[n] = 0;
+                return dp[n];
+            }
+
+            if (dp[n] != -1) return dp[n];
+
+            dp[n] = Math.min(minCostCalculator(n-1, cost) + cost[n - 1], minCostCalculator(n-2, cost) + cost[n - 2]);
+
+            return dp[n];
+        }
     }
 
 //    dp = new int[cost.length + 1];
