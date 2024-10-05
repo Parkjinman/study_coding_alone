@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public class twoSum {
     static int[] nums = {4, 9, 7, 5, 1};
-    static Stack<Integer> current = new Stack();
+    static Stack<Integer> current = new Stack<>();
     static int target = 12;
     static List<List<Integer>> answer = new Stack<>();
     static List<Integer> temp = new ArrayList<>();
