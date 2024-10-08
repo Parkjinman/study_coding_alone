@@ -1,4 +1,4 @@
-package inflearn.algorithm.bruteforce;
+package inflearn.algorithm.Bruteforce;
 
 import java.util.ArrayList;
 import java.util.List;
