@@ -1,0 +1,8 @@
+### GRPC server
+GRPC http://10.10.50.246/210
+
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
