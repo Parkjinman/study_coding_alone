@@ -15,23 +15,33 @@ public class DijkstraAlorithm {
         graph.put(7, Arrays.asList(new int[]{7, 6}, new int[]{9, 8}));
         graph.put(8, new ArrayList<>());
 
+        System.out.println(graphToString(graph));
+
         System.out.println(dijkstra(graph, 1, 8));
     }
 
-    public static int dijkstra(Map<Integer, List<int[]>> graph, int start, int finalNode) {
+    private static String graphToString(Map<Integer, List<int[]>> graph) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Integer, List<int[]>> entry : graph.entrySet()) {
+            sb.append(entry.getKey()).append(": ");
+            for (int[] edge : entry.getValue()) {
+                sb.append(Arrays.toString(edge)).append(" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    private static int dijkstra(Map<Integer, List<int[]>> graph, int start, int finalNode) {
         Map<Integer, Integer> costs = new HashMap<>();
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
 
         pq.add(new int[]{0, start});
 
         while (!pq.isEmpty()) {
-            System.out.println("pq: " + pq);
             int[] current = pq.poll();
             int curCost = current[0];
             int curV = current[1];
-
-            System.out.println("costs: " + costs);
-            System.out.println();
 
             if (!costs.containsKey(curV)) {
                 costs.put(curV, curCost);
@@ -39,7 +49,6 @@ public class DijkstraAlorithm {
                 for (int[] edge : graph.get(curV)) {
                     int nextCost = curCost + edge[0];
                     int nextV = edge[1];
-                    System.out.println(nextCost + ", " + nextV);
                     pq.add(new int[]{nextCost, nextV});
                 }
             }
