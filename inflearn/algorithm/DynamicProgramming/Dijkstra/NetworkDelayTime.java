@@ -20,7 +20,7 @@ public class NetworkDelayTime {
      * - N: 노드의 개수
      * - K: 시작 노드
      */
-    public static int networkDelayTime(int[][] times, int N, int K) {
+    private static int networkDelayTime(int[][] times, int N, int K) {
         // 그래프 구현
         Map<Integer, List<int[]>> graph = createGraph(times);
         System.out.println(graphToString(graph));
