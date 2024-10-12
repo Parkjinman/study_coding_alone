@@ -16,6 +16,7 @@ public class DequeueMain {
         System.out.println(deque);
         System.out.println(deque.pop());
         System.out.println(deque.pop());
+        System.out.println(deque.pollLast());
         System.out.println(deque);
     }
 }
