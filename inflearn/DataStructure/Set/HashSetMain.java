@@ -1,4 +1,4 @@
-package inflearn.DataStructure.HashTable;
+package inflearn.DataStructure.Set;
 
 import java.util.HashSet;
 
