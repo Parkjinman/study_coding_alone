@@ -5,16 +5,15 @@ import java.util.*;
 public class KeysAndRooms {
 
     public static void main (String[] args) {
-        KeysAndRooms k = new KeysAndRooms();
         List<List<Integer>> rooms = new ArrayList<>();
-        rooms.add(Arrays.asList(1));
-        rooms.add(Arrays.asList(2));
-        rooms.add(Arrays.asList(3));
+        rooms.add(List.of(1));
+        rooms.add(List.of(2));
+        rooms.add(List.of(3));
         rooms.add(new ArrayList<>());
-        System.out.println(k.canVisitAllRooms(rooms));
+        System.out.println(canVisitAllRooms(rooms));
     }
 
-    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+    public static boolean canVisitAllRooms(List<List<Integer>> rooms) {
         boolean[] visited = new boolean[rooms.size()];
         bfs(rooms, 0, visited);
         for (boolean v : visited) {
@@ -23,7 +22,7 @@ public class KeysAndRooms {
         return true;
     }
 
-    private void dfs(List<List<Integer>> rooms, int room, boolean[] visited) {
+    private static void dfs(List<List<Integer>> rooms, int room, boolean[] visited) {
         if (visited[room]) return;
         visited[room] = true;
         for (int key : rooms.get(room)) {
@@ -31,7 +30,7 @@ public class KeysAndRooms {
         }
     }
 
-    private void bfs(List<List<Integer>> rooms, int room, boolean[] visited) {
+    private static void bfs(List<List<Integer>> rooms, int room, boolean[] visited) {
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(room);
         visited[room] = true;
