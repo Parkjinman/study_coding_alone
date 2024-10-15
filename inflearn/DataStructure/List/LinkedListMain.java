@@ -10,8 +10,10 @@ public class LinkedListMain {
         list.add(3);
         list.add(5);
         list.addFirst(4);
+        list.removeLast();
 
         System.out.println(list);
         System.out.println(list.get(1));
+        System.out.println(list.subList(1, 3));
     }
 }
