@@ -1,15 +1,14 @@
 package inflearn.algorithm.Tree;
 
-class TreeNode {
-    String value;
-    TreeNode left, right;
-
-    TreeNode(String x) {
-        value = x;
-    }
-}
-
 public class DFS {
+    private static class TreeNode {
+        String value;
+        TreeNode left, right;
+
+        TreeNode(String x) {
+            value = x;
+        }
+    }
 
     public static void main(String[] args) {
         DFS dfs = new DFS();

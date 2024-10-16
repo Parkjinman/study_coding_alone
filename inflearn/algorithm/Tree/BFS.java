@@ -5,6 +5,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BFS {
+    private static class TreeNode {
+        String value;
+        TreeNode left, right;
+
+        TreeNode(String x) {
+            value = x;
+        }
+    }
+
     private Queue<TreeNode> queue = new LinkedList<>();
     private ArrayList<TreeNode> visited = new ArrayList<>();
 

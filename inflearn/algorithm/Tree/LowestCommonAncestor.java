@@ -1,6 +1,14 @@
 package inflearn.algorithm.Tree;
 
 public class LowestCommonAncestor {
+    private static class TreeNode {
+        String value;
+        TreeNode left, right;
+
+        TreeNode(String x) {
+            value = x;
+        }
+    }
 
     public static void main(String[] args) {
         LowestCommonAncestor lca = new LowestCommonAncestor();
