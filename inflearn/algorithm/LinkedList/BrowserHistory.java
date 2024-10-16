@@ -58,3 +58,47 @@ public class BrowserHistory {
         return this.history.get(currentStep);
     }
 }
+
+/**
+ * stack을 이용한 방법
+ */
+/*
+class BrowserHistory {
+    private Stack<String> mainStack = new Stack<>();
+    private Stack<String> subStack = new Stack<>();
+
+    public BrowserHistory(String homepage) {
+        mainStack.push(homepage);
+    }
+
+    public void visit(String url) {
+        if (!subStack.isEmpty()) {
+            subStack.removeAll(subStack);
+        }
+
+        mainStack.push(url);
+    }
+
+    public String back(int steps) {
+        while (steps-- > 0) {
+            if (mainStack.size() < 2) {
+                break;
+            }
+
+            subStack.push(mainStack.pop());
+        }
+
+        return mainStack.peek();
+    }
+
+    public String forward(int steps) {
+        while (steps-- > 0) {
+            if (subStack.isEmpty()) {
+                break;
+            }
+
+            mainStack.push(subStack.pop());
+        }
+        return mainStack.peek();
+    }
+}*/
