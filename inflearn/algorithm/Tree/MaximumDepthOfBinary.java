@@ -1,8 +1,6 @@
 package inflearn.algorithm.Tree;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
 
 public class MaximumDepthOfBinary {
@@ -15,7 +13,7 @@ public class MaximumDepthOfBinary {
         }
     }
 
-    public static class TreeNodeDepthObject {
+    private static class TreeNodeDepthObject {
         TreeNode node;
         int depth;
 
@@ -34,10 +32,22 @@ public class MaximumDepthOfBinary {
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
 
-        System.out.println(maximumDepthOfBinary.maxDepth(root));
+        System.out.println(maximumDepthOfBinary.maxDepthDFS(root));
+        System.out.println(maximumDepthOfBinary.maxDepthBFS(root));
     }
 
-    public int maxDepth(TreeNode root) {
+    public int maxDepthDFS(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int leftDepth = maxDepthDFS(root.left);
+        int rightDepth = maxDepthDFS(root.right);
+
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    public int maxDepthBFS(TreeNode root) {
         int maxDepth = 0;
 
         if (root == null) {
